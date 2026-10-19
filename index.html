@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Melese | Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Melese, a full-stack developer building React, Node.js and MySQL apps, including AI-powered applications.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <header class="header" id="header">
+    <div class="container bar">
+      <a href="#home" class="logo"></a>
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav" id="nav">
+        <ul>
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container">
+        <span class="status-badge" id="availability"></span>
+        <p class="hello">I love to build</p>
+        <h1>I am <span class="typed" id="typed"></span><span class="cursor" aria-hidden="true"></span></h1>
+        <p class="lead">React, Node.js and MySQL applications, including apps powered by AI.</p>
+        <div class="btns">
+          <a href="#projects" class="btn btn-p">View my projects <i class="ti ti-arrow-right"></i></a>
+          <a href="#contact" class="btn btn-g">Contact me</a>
+        </div>
+        <div class="social center" id="heroSocial"></div>
+      </div>
+      <a href="#about" class="scroll-hint" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <section id="about" class="section alt">
+      <div class="container">
+        <div class="head"><span class="badge">About me</span><h2>Turning ideas into <em>working products</em></h2></div>
+        <div class="about-grid">
+          <div class="photo"><span id="initial"></span><img id="photo" alt="Portrait of Melese"></div>
+          <div>
+            <h3>Full-stack developer from Ethiopia</h3>
+            <p>I'm <strong id="aboutName"></strong>, a junior developer who takes projects from the database to the browser. I build the interface in React, the API in Node.js and Express, and store the data in MySQL.</p>
+            <p>I also build AI-powered applications, such as a Q&amp;A forum that answers from its own knowledge base. I'm looking for a team or a client where I can keep shipping and learning.</p>
+            <div class="stats" id="stats"></div>
+            <div class="social" id="social"></div>
+            <div class="btns">
+              <a href="#contact" class="btn btn-p">Hire me</a>
+              <a href="cv.pdf" class="btn btn-g" id="cv" download><i class="ti ti-download"></i> Download CV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="head"><span class="badge">Technical skills</span><h2>Skills &amp; <em>technologies</em></h2></div>
+        <div class="tabs" id="tabs" role="tablist"></div>
+        <div class="pills" id="pills"></div>
+      </div>
+    </section>
+
+    <section id="services" class="section alt">
+      <div class="container">
+        <div class="head"><span class="badge">Services</span><h2>What I <em>do</em></h2></div>
+        <div class="grid3" id="services-grid"></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="head"><span class="badge">Portfolio</span><h2>Featured <em>projects</em></h2></div>
+        <div class="projects" id="projects-grid"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section alt">
+      <div class="container">
+        <div class="head"><span class="badge">Get in touch</span><h2>Let's build something <em>together</em></h2></div>
+        <div class="contact-grid">
+          <div class="cbox">
+            <h3>Have a project or a job in mind?</h3>
+            <p>Send me a message and I will reply as soon as I can.</p>
+            <ul class="cinfo">
+              <li><span class="cico"><i class="ti ti-mail"></i></span><div><b>Email</b><span id="contactEmail"></span></div></li>
+              <li><span class="cico"><i class="ti ti-map-pin"></i></span><div><b>Location</b><span>Ethiopia</span></div></li>
+            </ul>
+            <div class="social" id="contactSocial"></div>
+          </div>
+          <form class="cform" id="contactForm" novalidate>
+            <div class="row">
+              <div class="field"><label for="name">Full name</label><input id="name" name="name" placeholder="Your name" autocomplete="name" required></div>
+              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="Your email" autocomplete="email" required></div>
+            </div>
+            <div class="field"><label for="subject">Subject</label><input id="subject" name="subject" placeholder="Subject"></div>
+            <div class="field"><label for="message">Message</label><textarea id="message" name="message" placeholder="Write your message here..." required></textarea></div>
+            <button type="submit" class="btn btn-p">Send message <i class="ti ti-send"></i></button>
+            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container foot">
+      <a href="#home" class="logo"></a>
+      <div class="social" id="footerSocial"></div>
+      <p>&copy; <span id="year"></span> <span id="footName"></span>. Built with HTML, CSS and JavaScript.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top"><i class="ti ti-arrow-up"></i></button>
+  <script src="app.js"></script>
+</body>
+</html>
