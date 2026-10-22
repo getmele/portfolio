@@ -6,13 +6,13 @@ document.documentElement.classList.add("js");
 const CONFIG = {
   name: "Melese",
   email: "meleget89@gmail.com",
-  photo: "images/me.jpg",
+  photo: "images/me.jpeg",
   cv: "cv.pdf",
   available: "Available for opportunities", // set to "" to hide the badge
   social: [
-    { label: "GitHub", url: "https://github.com/your-username" },
+    { label: "GitHub", url: "https://github.com/getmele" },
     { label: "LinkedIn", url: "https://linkedin.com/in/your-username" },
-    { label: "Instagram", url: "https://instagram.com/your-username" },
+    { label: "Instagram", url: "https://www.instagram.com/melese.get" },
   ],
   roles: [
     "a Full-Stack Developer",
@@ -90,18 +90,18 @@ const CONFIG = {
       description:
         "A responsive Netflix-style interface with a featured banner, scrolling movie rows and trailers.",
       tech: ["React", "CSS", "REST API"],
-      thumbnailImage: "images/netflix.jpg",
-      thumbnailUrl: "",
-      github: "",
+      thumbnailImage: "images/netflix-clone.png",
+      thumbnailUrl: "https://netflix-clone-xi-lime.vercel.app/",
+      github: "https://github.com/getmele/netflix-clone",
     },
     {
       title: "ChatGPT Clone",
       description:
         "A chat app that sends your messages to an AI model and shows the conversation, like ChatGPT.",
       tech: ["React", "Node.js", "AI API", "MySQL"],
-      thumbnailImage: "images/chatgpt.jpg",
-      thumbnailUrl: "",
-      github: "",
+      thumbnailImage: "images/chatgpt.com.png",
+      thumbnailUrl: "https://gpt-clone-rouge-seven.vercel.app/",
+      github: "https://github.com/getmele/gpt-clone",
     },
     {
       title: "Garage Management System",
@@ -416,15 +416,30 @@ function initContactForm() {
     const name = f.get("name").trim(),
       email = f.get("email").trim(),
       message = f.get("message").trim();
-    const subject = f.get("subject").trim() || "Portfolio message";
     if (!name || !email || !message)
       return say("Please fill in your name, email and message.", "err");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
       return say("Please enter a valid email address.", "err");
-    const body = `${message}\n\nFrom: ${name} (${email})`;
-    location.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    say("Your email app should open now. Press send there to finish.", "ok");
-    form.reset();
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = true;
+    say("Sending...", "ok");
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(f).toString(),
+    })
+      .then((r) => {
+        if (!r.ok) throw new Error("Request failed");
+        say("Thank you! Your message was sent. I will reply soon.", "ok");
+        form.reset();
+      })
+      .catch(() =>
+        say(
+          `Sorry, the message could not be sent. Please email me at ${CONFIG.email}.`,
+          "err",
+        ),
+      )
+      .finally(() => (btn.disabled = false));
   });
 }
 
