@@ -6,7 +6,7 @@ document.documentElement.classList.add("js");
 const CONFIG = {
   name: "Melese",
   email: "meleget89@gmail.com",
-  photo: "images/me.jpeg",
+  photo: "images/melese.jpeg",
   cv: "cv.pdf",
   available: "Available for opportunities", // set to "" to hide the badge
   social: [
@@ -269,7 +269,7 @@ function initProjects() {
         `${esc(p.title.charAt(0))}<img src="${esc(p.thumbnailImage)}" alt="Screenshot of ${esc(p.title)}" loading="lazy" onerror="this.remove()">` +
         (live
           ? '<span class="go">Visit live site &#8599;</span>'
-          : `<span class="soon">${esc(p.status || "Deploying soon")}</span>`);
+          : `<span class="soon">${esc(p.status || "In progress")}</span>`);
       return `<article class="card">
       ${live ? `<a class="thumb" href="${esc(live)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${esc(p.title)}">${media}</a>` : `<div class="thumb">${media}</div>`}
       <div class="info">
@@ -429,16 +429,26 @@ function initContactForm() {
       body: new URLSearchParams(f).toString(),
     })
       .then((r) => {
-        if (!r.ok) throw new Error("Request failed");
+        if (!r.ok) throw new Error("Status " + r.status);
         say("Thank you! Your message was sent. I will reply soon.", "ok");
         form.reset();
       })
-      .catch(() =>
+      .catch((err) => {
+        console.error("Contact form erroed:", err);
+        const subject = f.get("subject").trim() || "Portfolio message";
+        const body = `${message}\n\nForm: ${name} (${email})`;
         say(
-          `Sorry, the message could not be sent. Please email me at ${CONFIG.email}.`,
+          "Sorry, the message could not be sent. Please email me at " +
+            CONFIG.email +
+            ".",
           "err",
-        ),
-      )
+        );
+        const a = document.createElement("a");
+        a.href = `mailto:${CONFIG.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        a.textContent = "Send it via email instead";
+        a.style.textDecoration = "underline";
+        status.append(a);
+      })
       .finally(() => (btn.disabled = false));
   });
 }
